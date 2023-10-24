@@ -11,12 +11,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'News Api Test Application',
+      title: 'NewsApi Test Application',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primaryColor: Colors.white,
+        useMaterial3: true,
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.white)
+        // primaryColor: Colors.white,
       ),
-      home: Home(),
+      home: const Home(),
     );
   }
 }
