@@ -5,6 +5,7 @@ import 'package:newsapitestapp/Helper/news.dart';
 import 'package:newsapitestapp/Models/article_model.dart';
 import 'package:newsapitestapp/Models/category_model.dart';
 import 'package:newsapitestapp/Pages/article.dart';
+import 'package:newsapitestapp/Pages/category.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -103,18 +104,19 @@ class _HomeState extends State<Home> {
 }
 
 class CategoryTitle extends StatelessWidget {
-  final String imageUrl, categorieName;
-  CategoryTitle({required this.imageUrl, required this.categorieName});
+  final imageUrl;
+  final categorieName;
+  CategoryTitle({this.imageUrl, this.categorieName});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.push(context, MaterialPageRoute(
-            builder: (context) => CategoryNews(
-              catagory: categorieName.toLowerCase()
-            )
-          ));
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) =>
+                    Category(category: categorieName.toLowerCase())));
       },
       child: Container(
         margin: EdgeInsets.only(right: 10),
@@ -123,7 +125,7 @@ class CategoryTitle extends StatelessWidget {
             ClipRRect(
                 borderRadius: BorderRadius.circular(6),
                 child: CachedNetworkImage(
-                  imageUrl: imageUrl,
+                  imageUrl: imageUrl.toString(),
                   width: 120,
                   height: 70,
                   fit: BoxFit.cover,
@@ -155,17 +157,21 @@ class CategoryTitle extends StatelessWidget {
 class BlogTile extends StatelessWidget {
   final String imageUrl, title, description, url;
   BlogTile(
-      {required this.imageUrl, required this.title, required this.description, required this.url});
+      {required this.imageUrl,
+      required this.title,
+      required this.description,
+      required this.url});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.push(context, MaterialPageRoute(
-          builder: (context) => Article(
-              blogUrl: url,
-            )
-          ));
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => Article(
+                      blogUrl: url,
+                    )));
       },
       child: Container(
         margin: EdgeInsets.only(bottom: 16),
