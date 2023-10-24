@@ -27,10 +27,21 @@ class _ArticleState extends State<Article> {
             )
           ],
         ),
+        actions: <Widget>[
+          Opacity(
+            opacity: 0,
+            child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 16),
+              child: Icon(Icons.save),
+            ),
+          )
+        ],
         centerTitle: true,
         elevation: 0.0,
       ),
       body: Container(
+        height: MediaQuery.of(context).size.height,
+        width: MediaQuery.of(context).size.width,
         child: WebView(
           initialUrl: widget.blogUrl,
           onWebViewCreated: (WebViewController webViewController) {

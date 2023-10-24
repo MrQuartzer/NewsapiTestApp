@@ -83,6 +83,7 @@ class _HomeState extends State<Home> {
                       padding: EdgeInsets.only(top: 16),
                       child: ListView.builder(
                           shrinkWrap: true,
+                          physics: ClampingScrollPhysics(),
                           itemCount: articles.length,
                           itemBuilder: (context, index) {
                             return BlogTile(
@@ -102,13 +103,19 @@ class _HomeState extends State<Home> {
 }
 
 class CategoryTitle extends StatelessWidget {
-  final imageUrl, categorieName;
-  CategoryTitle({this.imageUrl, this.categorieName});
+  final String imageUrl, categorieName;
+  CategoryTitle({required this.imageUrl, required this.categorieName});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        Navigator.push(context, MaterialPageRoute(
+            builder: (context) => CategoryNews(
+              catagory: categorieName.toLowerCase()
+            )
+          ));
+      },
       child: Container(
         margin: EdgeInsets.only(right: 10),
         child: Stack(
